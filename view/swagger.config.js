@@ -8,7 +8,7 @@ const doc = {
         title: 'E-commerce Campaign Reporting', // by default: "REST API"
         description: 'Documentation for E-commerce API', // by default: ""
     },
-    host: process.env.PORT||"localhost:3001", // by default: "localhost:3007"
+    host: "localhost:3007", // by default: "localhost:3007"
     basePath: '/', // by default: "/"
     schemes: ['http', 'https'], // by default: ['http']
     consumes: ['application/json', 'application/x-www-form-urlencoded'],
