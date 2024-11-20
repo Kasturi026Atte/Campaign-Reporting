@@ -1,0 +1,4 @@
+Campaign Name,Ad Group ID,FSN ID,Product Name,Ad Spend,Views,Clicks,Direct Revenue,Indirect Revenue,Direct Units,Indirect Units
+Campaign A,AG123,FSN001,Product 1,150.75,1000,150,300.5,50.25,10,5
+Campaign B,AG124,FSN002,Product 2,200.0,1500,200,400.75,80.5,15,7
+Campaign C,AG125,FSN003,Product 3,120.5,900,120,250.0,40.75,8,3

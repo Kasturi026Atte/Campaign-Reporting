@@ -1,0 +1,527 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "E-commerce Campaign Reporting",
+    "description": "Documentation for E-commerce API"
+  },
+  "host": "localhost:3007",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Auth Endpoint(s)",
+      "summary": "Open"
+    },
+    {
+      "name": "User",
+      "description": "User Endpoint(s)",
+      "summary": "Secure"
+    },
+    {
+      "name": "Product",
+      "description": "Product report upload Endpoint(s)",
+      "summary": "Secure"
+    },
+    {
+      "name": "Product-Filter",
+      "description": "Product report filter Endpoint(s)",
+      "summary": "Secure"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "AccessToken": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "x-access-token",
+      "description": "Please provide the valid access token. If you don’t have one, please log in to get the token as a response."
+    }
+  },
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/auth/user/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "This routes is used for creating an user Details",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "User Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userDetails"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/user/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "This routes is used for creating an user Details",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "User login Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userLoginDetails"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user/fetch": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "This routes is used for creating an user Details",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "description": "User Id get detailes ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user/update": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "This routes is used for update an user Details",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "description": "User Id get detailes ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "User update Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userDetails"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user/delete": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "This routes is used for update an user Details",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "description": "User Id for delete Details",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/upload-csv": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "description": "This route is used to upload a CSV file and insert product data into the database",
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "CSV file containing product data",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/get-report": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "description": "This route is used to fetch product report based on filters",
+        "parameters": [
+          {
+            "name": "campaignName",
+            "in": "query",
+            "description": "Filter by Campaign Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "adGroupID",
+            "in": "query",
+            "description": "Filter by Ad Group ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fsnID",
+            "in": "query",
+            "description": "Filter by FSN ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "Filter by Product Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term for partial matching across campaign name, product name, FSN ID, or Ad Group ID.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/get-report/campaign": {
+      "get": {
+        "tags": [
+          "Product-Filter"
+        ],
+        "description": "This route is used to fetch product statistics filtered by Campaign Name.",
+        "parameters": [
+          {
+            "name": "campaignName",
+            "in": "query",
+            "description": "Filter products by Campaign Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "adGroupID",
+            "in": "query",
+            "description": "Optional filter for Ad Group ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fsnID",
+            "in": "query",
+            "description": "Optional filter for FSN ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "Optional filter for Product Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/get-report/groupId": {
+      "get": {
+        "tags": [
+          "Product-Filter"
+        ],
+        "description": "This route is used to fetch product statistics filtered by Ad Group ID.",
+        "parameters": [
+          {
+            "name": "adGroupID",
+            "in": "query",
+            "description": "Filter products by Ad Group ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campaignName",
+            "in": "query",
+            "description": "Optional filter for Campaign Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fsnID",
+            "in": "query",
+            "description": "Optional filter for FSN ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "Optional filter for Product Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/get-report/fsn": {
+      "get": {
+        "tags": [
+          "Product-Filter"
+        ],
+        "description": "This route is used to fetch product statistics filtered by FSN ID.",
+        "parameters": [
+          {
+            "name": "fsnID",
+            "in": "query",
+            "description": "Filter products by FSN ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campaignName",
+            "in": "query",
+            "description": "Optional filter for Campaign Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "adGroupID",
+            "in": "query",
+            "description": "Optional filter for Ad Group ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "Optional filter for Product Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/get-report/ProductName": {
+      "get": {
+        "tags": [
+          "Product-Filter"
+        ],
+        "description": "This route is used to fetch product statistics filtered by Product Name.",
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "Filter products by Product Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campaignName",
+            "in": "query",
+            "description": "Optional filter for Campaign Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "adGroupID",
+            "in": "query",
+            "description": "Optional filter for Ad Group ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fsnID",
+            "in": "query",
+            "description": "Optional filter for FSN ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "skip value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "userDetails": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "@user123"
+        },
+        "email": {
+          "type": "string",
+          "example": "useronetoone@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "user$12&one"
+        }
+      }
+    },
+    "userLoginDetails": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "@user123"
+        },
+        "password": {
+          "type": "string",
+          "example": "user$12&one"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "AccessToken": []
+    }
+  ]
+}
